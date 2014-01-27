@@ -1,0 +1,20 @@
+web:
+  build: .
+  ports:
+    - 8000:8000
+  volumes:
+    - .:/code
+db:
+  build: provisioner/db
+  ports:
+    - 5432:5432
+redis:
+  build: provisioner/redis
+  ports:
+    - 6379:6379
+builder:
+  build: provisioner/builder
+  ports:
+    - 35729:35729
+  volumes:
+    - .:/code

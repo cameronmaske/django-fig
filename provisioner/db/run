@@ -1,0 +1,28 @@
+#!/bin/bash
+set -e
+
+# If you change this, make sure to update postgresql.conf 'data_directory' as well.
+DATADIR=/data
+POSTGRES=/usr/lib/postgresql/9.3/bin/postgres
+POSTGRES_CONFIG=/etc/postgresql/9.3/main/postgresql.conf
+INITDB=/usr/lib/postgresql/9.3/bin/initdb
+
+# Test if DATADIR is existent
+if [ ! -d $DATADIR ]; then
+  echo "Creating Postgres data at $DATADIR"
+  mkdir -p $DATADIR
+fi
+
+# Test if DATADIR has content
+if [ ! "$(ls -A $DATADIR)" ]; then
+  echo "Initializing Postgres database at $DATADIR"
+  chmod 777 $DATADIR
+  chown postgres:postgres -R $DATADIR
+  sudo -u postgres $INITDB -E UTF8 -D $DATADIR
+  echo "Initializing Postgres user:'$POSTGRESQL_USER'"
+  sudo -u postgres $POSTGRES --single --config-file=$POSTGRES_CONFIG <<< "CREATE USER $POSTGRESQL_USER WITH SUPERUSER PASSWORD '$POSTGRESQL_PASS';"
+  echo "Initializing Postgres database:'$POSTGRESQL_DB'"
+  sudo -u postgres $POSTGRES --single --config-file=$POSTGRES_CONFIG <<< "CREATE DATABASE $POSTGRESQL_DB OWNER $POSTGRESQL_USER;"
+fi
+
+exec sudo -u postgres $POSTGRES --config-file=$POSTGRES_CONFIG

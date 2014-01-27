@@ -1,0 +1,10 @@
+#!/bin/sh
+DATADIR=/data
+
+# Test if DATADIR is existent
+if [ ! -d $DATADIR ]; then
+  echo "Creating Redis data at $DATADIR"
+  mkdir -p $DATADIR
+fi
+
+exec sudo redis-server /etc/redis/redis.conf --dir $DATADIR
