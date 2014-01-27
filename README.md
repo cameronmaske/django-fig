@@ -1,15 +1,17 @@
-WARNING: WORK IN PROGESS: May not work.
-=======================================
+WARNING: WORK IN PROGESS.
+=========================
+May not work...yet!
+-------------------
 
 Kickstart your next Django Project.
 ===================================
-A sensible boilerplate for a Django project. Less time setting up, more time developing.
+# A sensible boilerplate for a Django project. Less time setting up, more time developing.
 
 Quick Start.
 ============
 Install Docker and then
 ```
-git clone https://github.com/cameronmaske/django-fig.git your-apps-name;
+git clone https://github.com/cameronmaske/django-fig.git your-apps-name
 cd your-apps-name
 pip install -r requirements-dev.txt
 fig up
@@ -30,7 +32,7 @@ Docker has the following simple ```curl``` script to install Docker on Ubuntu.
 ```
 curl -s https://get.docker.io/ubuntu/ | sudo sh
 ```
-[A more detailed set of installation instruction is available here](http://docs.docker.io/en/latest/installation/ubuntulinux/)
+[A more detailed set of installation instruction is available here.](http://docs.docker.io/en/latest/installation/ubuntulinux/)
 
 ### OSX
 To install Docker on osx, one of the best options currently is [docker-osx](https://github.com/noplay/docker-osx). docker-osx makes it easy to manage a virtual machine that manages a Docker daemon running on it.
@@ -41,13 +43,13 @@ To install docker-osx...
 
 2. Put the `docker-osx` script somewhere on your path:
 
-```curl https://raw.github.com/noplay/docker-osx/master/docker-osx > /usr/local/bin/docker-osx
-chmod +x /usr/local/bin/docker-osx```
+        curl https://raw.github.com/noplay/docker-osx/master/docker-osx > /usr/local/bin/docker-osx
+        chmod +x /usr/local/bin/docker-osx
 
 3. Run:
 
-```docker-osx shell
-docker version```
+        docker-osx shell
+        docker version
 
 ### Windows
 Currently not supported. Your best bet is to boot up a Vagrant machine with Ubuntu and follow the Linux installation above. The Docker team has more information about [Getting Started on Windows](http://docs.docker.io/en/latest/installation/windows/)
