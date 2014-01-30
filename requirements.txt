@@ -1,1 +1,2 @@
-django
+Django
+dj-database-url

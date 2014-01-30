@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}ng-app="app"{% endblock %}
+
+{% block content %}
+<div ui-view></div>
+{% endblock %}
+
+{% block javascript %}
+{% load staticfiles %}
+<script src="{% static "js/vendor.js" %}"></script>
+<script src="{% static "js/templates.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
+{% endblock %}
