@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}{% endblock %}
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+    <script src="//localdocker:35729/livereload.js"></script>
+  </head>
+  <body {% block body %}{% endblock %}>
+  {% block content %}
+  {% endblock %}
+
+  {% block javascript %}
+  {% endblock %}
+ </body>
+</html>

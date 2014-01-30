@@ -2,7 +2,7 @@ FROM ubuntu:12.04
 
 # Allow custom PPA
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise universe" >> /etc/apt/sources.list
-RUN apt-get install -y software-properties-common python-software-properties
+RUN apt-get install -y --force-yes software-properties-common python-software-properties
 RUN add-apt-repository -y ppa:chris-lea/node.js
 RUN apt-get update
 

@@ -4,6 +4,9 @@ web:
     - 8000:8000
   volumes:
     - .:/code
+  links:
+    - db
+    - redis
 db:
   build: provisioner/db
   ports:
