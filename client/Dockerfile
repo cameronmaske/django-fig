@@ -9,8 +9,8 @@ RUN apt-get update
 # Install NodeJS
 RUN apt-get install -y -q nodejs
 
-# Install grunt + coffeescript globally.
-RUN npm install -g coffee-script grunt-cli
+# Install gulp + coffeescript globally.
+RUN npm install -g coffee-script gulp
 
 # Install Ruby
 RUN apt-get install -y libgemplugin-ruby ruby
@@ -20,12 +20,9 @@ RUN gem install sass
 # Remove unnecessary packages
 RUN apt-get autoremove -y
 
-ADD package.json /code/package.json
-
-WORKDIR /code/
-
-RUN npm install .
-
+ADD run /code/client/run
+RUN chmod +x /code/client/run
+WORKDIR /code/client
 EXPOSE 35729
 
-CMD grunt watch
+CMD ["/code/client/run"]

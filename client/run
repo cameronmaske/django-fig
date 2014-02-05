@@ -1,0 +1,49 @@
+#!/bin/bash
+set -e
+
+python -c "$(cat <<-EOF
+import json
+import os
+import subprocess
+
+if __name__ == "__main__":
+    # Ensures NPM packages are installed and up to date, else re-installs.
+    # List all the packages currently installed.
+    p = subprocess.Popen(
+        ["npm", "list", "--silent", "--json"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
+    out, err = p.communicate()
+    installed_pkgs = json.loads(out).get("dependencies", {})
+    installed_pkgs = dict((p.lower(), info) for p, info in installed_pkgs.items())
+    # Get all the dependencies (dev) from the package.json
+
+    package_json = json.load(open('package.json'))
+    dependencies = package_json.get("dependencies", {})
+    dependencies.update(package_json.get("devDependencies", {}))
+
+    reinstall = False
+    for dep in dependencies:
+        try:
+            # Check if the deps is installed...
+            name = next(pkg for pkg in installed_pkgs if pkg == dep)
+            # And if is the right version.
+            installed_version = installed_pkgs[name]['version']
+            dep_version = dependencies[name].replace("~", "")
+            if installed_version != dep_version:
+                print "%s is not the correct version (installed: %s - expected: %s)" % (name, installed_version, dep_version)
+                reinstall = True
+        except:
+            reinstall = True
+            print "Not installed %s" % (dep)
+            break
+
+    if reinstall:
+        print "Re-installing package.json"
+        os.system("npm install .")
+    else:
+        print "NPM packages are all up to date."
+EOF
+)"
+
+exec gulp --require coffee-script/register
