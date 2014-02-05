@@ -2,11 +2,11 @@
 FROM ubuntu:12.04
 MAINTAINER Cameron Maske "cam@trackmaven.com"
 
-RUN apt-get -y install wget
+RUN apt-get -y --force-yes install wget
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" >> /etc/apt/sources.list.d/pgdg.list
 RUN wget --quiet --no-check-certificate -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN apt-get -y update
-RUN apt-get -y install postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3 sudo
+RUN apt-get -y --force-yes install postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3 sudo
 
 ADD config/pg_hba.conf /etc/postgresql/9.3/main/
 ADD config/postgresql.conf /etc/postgresql/9.3/main/
