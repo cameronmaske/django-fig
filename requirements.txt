@@ -1,2 +1,5 @@
-Django
-dj-database-url
+Django==1.6.1
+dj-database-url==0.2.2
+django-redis==3.5.0
+psycopg2==2.4.5
+redis==2.9.1

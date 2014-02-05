@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 import sys
 import dj_database_url
+import urlparse
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 PROJECT_ROOT = os.path.dirname(os.path.dirname(__file__))
@@ -20,7 +21,7 @@ sys.path.append(os.path.join(PROJECT_ROOT, 'apps'))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wx@-4muj6l0l^y_i6q3j=z$mnkho3z8ureyqk5x!h5jj7#r3zp'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,7 +29,6 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -61,11 +61,24 @@ ROOT_URLCONF = 'config.urls'
 
 WSGI_APPLICATION = 'wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
+
+# Cache (redis)
+
+REDIS_URL = urlparse.urlparse(os.environ.get('REDIS_URL', 'redis://localhost:6379'))
+CACHES = {
+    "default": {
+        "BACKEND": "redis_cache.cache.RedisCache",
+        "LOCATION": REDIS_URL.netloc,
+        "OPTIONS": {
+            "DB": 1,
+            "CLIENT_CLASS": "redis_cache.client.DefaultClient",
+        }
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -79,7 +92,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
