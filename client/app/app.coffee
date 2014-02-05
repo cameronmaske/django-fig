@@ -1,25 +1,24 @@
 installed_apps = [
-    # 3rd party
-    'ui.router',
-    'ngTemplates'
+  # 3rd party
+  'ui.router',
+  'ngTemplates'
 ]
 
 app = angular.module('app', installed_apps)
 
 app.config(($stateProvider, $urlRouterProvider) ->
-    $stateProvider
-        .state('todoList'
-            url: '/'
-            templateUrl: 'todoList.template'
-            controller: 'todoListCtrl'
-        )
-    $urlRouterProvider.otherwise('/');
+  $stateProvider
+    .state('todoList'
+      url: '/'
+      templateUrl: 'todoList.template'
+      controller: 'todoListCtrl')
+  $urlRouterProvider.otherwise('/')
 )
 
 
 app.controller('todoListCtrl', ($scope) ->
- $scope.todos = [
-    {text: 'learn angular', done: true},
+  $scope.todos = [
+    {text: 'learn angular', done: true}
     {text: 'build an angular app', done: false}
   ]
 
@@ -38,5 +37,4 @@ app.controller('todoListCtrl', ($scope) ->
     $scope.todos = []
     for todo in oldTodos
       $scope.todos.push(todo) unless todo.done
-
 )

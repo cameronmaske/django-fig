@@ -1,22 +1,11 @@
-angular.module('ngTemplates', ['todoList.template']);
-
-angular.module("todoList.template", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("todoList.template",
-    "<div>\n" +
-    "  <span>\n" +
-    "    {{remaining()}} of {{todos.length}} remaining\n" +
-    "  </span>\n" +
-    "  [ <a href=\"\" ng-click=\"archive()\">archive</a> ]\n" +
-    "  <ul class=\"unstyled\">\n" +
-    "    <li ng-repeat=\"todo in todos\">\n" +
-    "      <input type=\"checkbox\" ng-model=\"todo.done\">\n" +
-    "      <span class=\"done-{{todo.done}}\">{{todo.text}}</span>\n" +
-    "    </li>\n" +
-    "  </ul>\n" +
-    "  <form ng-submit=\"addTodo()\">\n" +
-    "    <input type=\"text\" ng-model=\"todoText\"  size=\"30\"\n" +
-    "           placeholder=\"add new todo here\">\n" +
-    "    <input class=\"btn-primary\" type=\"submit\" value=\"add\">\n" +
-    "  </form>\n" +
-    "</div>");
+(function(module) {
+try {
+  module = angular.module('ngTemplates');
+} catch (e) {
+  module = angular.module('ngTemplates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('todoList.template',
+    '<div><span>{{remaining()}} of {{todos.length}} remaining</span> [ <a href="" ng-click="archive()">archive</a> ]<ul class="unstyled"><li ng-repeat="todo in todos"><input type="checkbox" ng-model="todo.done"><span class="done-{{todo.done}}">{{todo.text}}</span></li></ul><form ng-submit="addTodo()"><input type="text" ng-model="todoText" size="30" placeholder="add new todo here"><input class="btn-primary" type="submit" value="add"></form></div>');
 }]);
+})();

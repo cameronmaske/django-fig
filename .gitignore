@@ -1,4 +1,2 @@
 *.pyc
-node_modules/
-build/
-.sass-cache/
+client/node_modules/

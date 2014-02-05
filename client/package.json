@@ -19,16 +19,18 @@
   },
   "homepage": "https://github.com/cameronmaske/django-fig",
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-contrib-coffee": "~0.8.2",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-sass": "~0.7.0",
-    "grunt-contrib-cssmin": "~0.7.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-ngmin": "0.0.3",
-    "jit-grunt": "~0.2.1",
-    "grunt-newer": "~0.6.1",
-    "grunt-html2js": "~0.2.4"
+    "coffee-script": "~1.7.1",
+    "gulp": "~3.5.1",
+    "gulp-util": "~2.2.14",
+    "gulp-coffee": "~1.4.1",
+    "gulp-concat": "~2.1.7",
+    "gulp-ng-html2js": "~0.1.4",
+    "gulp-sass": "~0.6.0",
+    "gulp-livereload": "~0.3.2",
+    "gulp-rename": "~0.2.2",
+    "tiny-lr": "0.0.5",
+    "gulp-htmlmin": "~0.1.1",
+    "gulp-ngmin": "~0.1.2",
+    "gulp-minify-css": "~0.2.0"
   }
 }

@@ -15,8 +15,8 @@ redis:
   build: provisioner/redis
   ports:
     - 6379:6379
-builder:
-  build: provisioner/builder
+client:
+  build: client/
   ports:
     - 35729:35729
   volumes:
